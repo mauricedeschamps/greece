@@ -1,0 +1,23 @@
+{
+  "name": "Greek Sights 16",
+  "short_name": "Greek16",
+  "description": "16 selected Greek sights: Acropolis, Santorini, Meteora and more. 6 languages, offline-ready.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "theme_color": "#0B3B4F",
+  "background_color": "#0B3B4F",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icons/icon-192.jpg",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

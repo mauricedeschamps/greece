@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Greek Sights 16 - ギリシャ観光名所16選</title>
+  <meta name="description" content="16 selected Greek sights. Aegean blue theme, 6 languages, custom images, transport, official links.">
+  <meta name="theme-color" content="#0B3B4F">
+  <link rel="apple-touch-icon" href="icons/icon-192.jpg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
+    body.light { --bg: #F4F9FC; --surface: #FFFFFF; --text: #1A3E4C; --text-secondary: #4B6A7A; --border: #CFE3EA; --accent: #1C6E8F; --accent-light: #E1F0F5; --gold: #F4B942; --card-shadow: 0 12px 28px rgba(0,0,0,0.06); --header-bg: #F4F9FCcc; --footer-bg: #F4F9FCcc; --btn-bg: #E6F0F4; --btn-hover: #D1E4EC; }
+    body, body.dark { --bg: #0B3B4F; --surface: #1F4E62; --text: #F0F6F9; --text-secondary: #C2D9E3; --border: #2E6A7F; --accent: #64B5D6; --accent-light: #2C5A6E; --gold: #FFD966; --card-shadow: 0 12px 28px rgba(0,0,0,0.4); --header-bg: #0B3B4Fcc; --footer-bg: #0B3B4Fcc; --btn-bg: #1E6279; --btn-hover: #2C7A96; }
+    body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.5; }
+    h1, h2, h3 { font-weight: 600; font-family: 'Inter', sans-serif; }
+    .app-header { padding: 1rem 1.5rem; background-color: var(--header-bg); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 20; }
+    .header-inner { max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8rem; }
+    h1 { font-size: 1.7rem; font-weight: 700; background: linear-gradient(135deg, var(--gold), var(--accent)); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .controls { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+    button, .lang-btn, .settings-trigger { background-color: var(--btn-bg); border: 1px solid var(--border); padding: 0.45rem 1rem; border-radius: 60px; font-size: 0.85rem; font-weight: 500; cursor: pointer; color: var(--text); transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.4rem; backdrop-filter: blur(4px); }
+    button:hover, .lang-btn:hover, .settings-trigger:hover { background-color: var(--btn-hover); transform: translateY(-2px); border-color: var(--gold); }
+    .main-container { max-width: 1400px; margin: 2rem auto; padding: 0 1.5rem; }
+    .spot-slider { display: grid; grid-template-rows: repeat(4, auto); grid-auto-flow: column; grid-auto-columns: minmax(270px, 300px); gap: 1.8rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1.5rem; scrollbar-width: thin; }
+    .spot-slider::-webkit-scrollbar { height: 5px; }
+    .spot-card { scroll-snap-align: start; background: var(--surface); border-radius: 32px; padding: 1.2rem; box-shadow: var(--card-shadow); cursor: pointer; transition: all 0.25s ease; border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .spot-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px rgba(0,0,0,0.2); border-color: var(--gold); }
+    .spot-img { width: 100%; height: 160px; object-fit: cover; border-radius: 24px; margin-bottom: 1rem; background-color: var(--btn-bg); }
+    .spot-emoji { font-size: 3.5rem; margin: 0.2rem 0; }
+    .spot-name { font-size: 1.3rem; font-weight: 700; margin: 0.6rem 0 0.3rem; }
+    .spot-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; line-height: 1.4; }
+    .detail-view { max-width: 1100px; margin: 1rem auto; background: var(--surface); border-radius: 40px; padding: 2rem; border: 1px solid var(--border); box-shadow: var(--card-shadow); }
+    .detail-header { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; border-bottom: 2px dashed var(--border); padding-bottom: 1.5rem; }
+    .detail-img { width: 280px; height: 280px; object-fit: cover; border-radius: 32px; background: var(--btn-bg); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    @media (max-width: 700px) { .detail-img { width: 100%; height: auto; max-height: 260px; } .spot-slider { grid-auto-columns: minmax(240px, 260px); gap: 1rem; } .detail-view { padding: 1.2rem; } .detail-header { flex-direction: column; text-align: center; } .detail-title { font-size: 1.7rem; } h1 { font-size: 1.2rem; } }
+    .detail-title { font-size: 2.2rem; font-weight: 700; }
+    .detail-description { margin: 1rem 0; line-height: 1.7; font-size: 1rem; }
+    .tips-card { background: var(--accent-light); padding: 1.2rem; border-radius: 28px; margin: 1rem 0; border-left: 4px solid var(--gold); }
+    .metro-info { display: inline-flex; align-items: center; gap: 8px; background: var(--btn-bg); padding: 0.5rem 1rem; border-radius: 60px; font-size: 0.9rem; margin: 0.5rem 0; }
+    .official-link { display: inline-flex; align-items: center; gap: 6px; background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 60px; text-decoration: none; font-weight: 500; margin: 1rem 0; }
+    .official-link:hover { opacity: 0.9; transform: scale(0.98); }
+    .back-buttons { display: flex; gap: 1rem; margin-top: 2rem; justify-content: center; flex-wrap: wrap; }
+    .settings-panel { background: var(--surface); border-radius: 36px; padding: 1.8rem; margin: 1rem 0; border: 1px solid var(--border); }
+    .settings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .settings-item label { font-weight: 600; display: block; margin-bottom: 0.25rem; }
+    .settings-item input { width: 100%; padding: 0.6rem; border-radius: 24px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
+    .map-container { margin: 2rem 0 1rem; border-radius: 28px; overflow: hidden; border: 2px solid var(--gold); }
+    iframe { width: 100%; height: 280px; border: 0; display: block; }
+    .app-footer { text-align: center; padding: 2rem 1rem; margin-top: 2rem; border-top: 1px solid var(--border); background-color: var(--footer-bg); font-size: 0.9rem; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body class="dark">
+  <header class="app-header">
+    <div class="header-inner">
+      <h1 id="app-title">🇬🇷 Aegean Gems · 16 Greek Wonders</h1>
+      <div class="controls">
+        <div class="lang-group" id="lang-buttons"></div>
+        <button id="settings-btn" class="settings-trigger">⚙️ <span id="settings-btn-text">Image Settings</span></button>
+        <button id="theme-toggle">🌙 <span id="theme-toggle-text">Dark/Light</span></button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div id="home-view" class="main-container"><div class="spot-slider" id="spot-slider"></div></div>
+    <div id="detail-view" class="detail-view hidden"></div>
+    <div id="settings-view" class="settings-panel hidden main-container">
+      <h2 id="settings-title">🖼️ Set Custom Images</h2>
+      <p id="settings-desc">Enter image URLs for each spot. Leave blank to show emoji.</p>
+      <div id="settings-grid" class="settings-grid"></div>
+      <div class="back-buttons">
+        <button id="save-settings" class="back-btn">💾 <span id="save-settings-text">Save & Refresh</span></button>
+        <button id="close-settings" class="back-btn">◀ <span id="close-settings-text">Back</span></button>
+      </div>
+    </div>
+  </main>
+  <footer class="app-footer">
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3144.488138286526!2d23.7237!3d37.9715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd1f067043f1%3A0x2736358464bc33c3!2sParthenon!5e0!3m2!1sen!2sfr!4v1711123456789!5m2!1sen!2sfr" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div id="footer-text">📮 Aegean Travel Concierge<br><a href="mailto:mementomorikatsu@gmail.com">mementomorikatsu@gmail.com</a></div>
+  </footer>
+  <script>
+    const languages = { en:'🇬🇧 English', el:'🇬🇷 Ελληνικά', it:'🇮🇹 Italiano', de:'🇩🇪 Deutsch', ru:'🇷🇺 Русский', ja:'🇯🇵 日本語' };
+    let currentLang = 'en';
+    const t = {
+      en: { title:'🇬🇷 Aegean Gems · 16 Greek Wonders', settingsBtn:'Image Settings', themeBtn:'Dark/Light', saveSettings:'Save & Refresh', back:'Back', home:'Home', tipsLabel:'💡 Insider Tips', metroLabel:'🚇 Access / Metro', officialLabel:'🔗 Official Website', settingsTitle:'🖼️ Set Custom Images', settingsDesc:'Enter image URLs. Leave blank for emoji.', footerText:'📮 Aegean Travel Concierge' },
+      el: { title:'🇬🇷 Αιγαία Πετράδια · 16 Ελληνικά Αξιοθέατα', settingsBtn:'Ρυθμίσεις Εικόνων', themeBtn:'Σκοτεινό/Φωτεινό', saveSettings:'Αποθήκευση & Ανανέωση', back:'Πίσω', home:'Αρχική', tipsLabel:'💡 Συμβουλές', metroLabel:'🚇 Πρόσβαση / Μετρό', officialLabel:'🔗 Επίσημη Ιστοσελίδα', settingsTitle:'🖼️ Ορισμός Εικόνων', settingsDesc:'Εισάγετε URL εικόνων. Κενό για emoji.', footerText:'📮 Ταξιδιωτικός Σύμβουλος Αιγαίου' },
+      it: { title:'🇬🇷 Perle dell’Egeo · 16 Meraviglie Greche', settingsBtn:'Impostaz. Immagini', themeBtn:'Scuro/Chiaro', saveSettings:'Salva e Aggiorna', back:'Indietro', home:'Home', tipsLabel:'💡 Consigli', metroLabel:'🚇 Accesso / Metro', officialLabel:'🔗 Sito Ufficiale', settingsTitle:'🖼️ Immagini Personalizzate', settingsDesc:'Inserisci URL immagini. Lascia vuoto per emoji.', footerText:'📮 Concierge di Viaggio Egeo' },
+      de: { title:'🇬🇷 Ägäische Schätze · 16 Griechische Wunder', settingsBtn:'Bild-Einstell.', themeBtn:'Dunkel/Hell', saveSettings:'Speichern & Aktualisieren', back:'Zurück', home:'Start', tipsLabel:'💡 Tipps', metroLabel:'🚇 Zugang / Metro', officialLabel:'🔗 Offiz. Website', settingsTitle:'🖼️ Bilder Anpassen', settingsDesc:'Bild-URLs eingeben. Leer für Emoji.', footerText:'📮 Ägäis Reisekoncierge' },
+      ru: { title:'🇬🇷 Жемчужины Эгеиды · 16 греческих чудес', settingsBtn:'Настройки изображений', themeBtn:'Тёмная/Светлая', saveSettings:'Сохранить и обновить', back:'Назад', home:'Главная', tipsLabel:'💡 Советы', metroLabel:'🚇 Транспорт / Метро', officialLabel:'🔗 Офиц. сайт', settingsTitle:'🖼️ Установить изображения', settingsDesc:'Введите URL изображений. Пусто для эмодзи.', footerText:'📮 Эгейский консьерж' },
+      ja: { title:'🇬🇷 エーゲ海の宝石 · ギリシャ観光名所16選', settingsBtn:'画像設定', themeBtn:'ダーク/ライト', saveSettings:'保存して更新', back:'戻る', home:'ホーム', tipsLabel:'💡 おすすめポイント', metroLabel:'🚇 アクセス / 最寄り駅', officialLabel:'🔗 公式サイト', settingsTitle:'🖼️ 画像URLを設定', settingsDesc:'各スポットの画像URL。空欄は絵文字。', footerText:'📮 エーゲ海トラベルコンシェルジュ' }
+    };
+    // 16 Greek sights data
+    const spotsData = [
+      { id:"acropolis", emoji:"🏛️", officialUrl:"https://www.theacropolismuseum.gr/en", metro:{en:"Acropoli (Metro Line 2)",el:"Ακρόπολη (Μετρό Γραμμή 2)",it:"Acropoli (Metro Linea 2)",de:"Akropoli (U-Bahn Linie 2)",ru:"Акрополи (метро линия 2)",ja:"アクロポリ駅（メトロ2号线）"}, name:{en:"Acropolis & Parthenon",el:"Ακρόπολη & Παρθενώνας",it:"Acropoli & Partenone",de:"Akropolis & Parthenon",ru:"Акрополь и Парфенон",ja:"アクロポリス／パルテノン神殿"}, desc:{en:"Symbol of ancient Greece, marble Parthenon dedicated to Athena. Breathtaking views of Athens.",el:"Σύμβολο αρχαίας Ελλάδας, μαρμάρινος Παρθενώνας αφιερωμένος στην Αθηνά.",it:"Simbolo dell'antica Grecia, Partenone di marmo dedicato ad Atena.",de:"Symbol des antiken Griechenlands, Parthenon aus Marmor.",ru:"Символ Древней Греции, мраморный Парфенон.",ja:"古代ギリシャの象徴。アテナを祀るパルテノン神殿。"}, tips:{en:"Go early morning or late afternoon. Combo ticket includes slopes.",el:"Πηγαίνετε νωρίς το πρωί. Συνδυαστικό εισιτήριο.",it:"Mattina presto o tardo pomeriggio. Biglietto combinato.",de:"Früher Morgen oder später Nachmittag. Kombi-Ticket.",ru:"Рано утром или после обеда. Комбинированный билет.",ja:"早朝か夕方がおすすめ。共通券あり。"}},
+      { id:"santorini", emoji:"🌅", officialUrl:"https://www.santorini.gr/", metro:{en:"Thira (bus from port)",el:"Θήρα (λεωφορείο)",it:"Thira (bus dal porto)",de:"Thira (Bus vom Hafen)",ru:"Тира (автобус из порта)",ja:"ティラ（港からバス）"}, name:{en:"Santorini (Oia)",el:"Σαντορίνη (Οία)",it:"Santorini (Oia)",de:"Santorini (Oia)",ru:"Санторини (Ойя)",ja:"サントリーニ島（イア）"}, desc:{en:"White-washed houses, blue domes, caldera views. World-famous sunset.",el:"Άσπρα σπίτια, μπλε τρούλοι, θέα καλντέρας.",it:"Case bianche, cupole blu, vista caldera.",de:"Weiße Häuser, blaue Kuppeln, Caldera-Blick.",ru:"Белые дома, синие купола, вид на кальдеру.",ja:"白い家と青いドーム。世界一の夕日。"}, tips:{el:"Κλείστε κατάλυμα με θέα. Περπατήστε από τα Φηρά στην Οία.",en:"Book accommodation with caldera view. Hike Fira-Oia.",it:"Alloggio con vista caldera. Escursione Fira-Oia.",de:"Unterkunft mit Caldera-Blick. Wanderung Fira-Oia.",ru:"Бронируйте вид на кальдеру. Поход из Фиры в Ойю.",ja:"カルデラビューの宿を。フィラからイアまでハイキング。"}},
+      { id:"mykonos", emoji:"🌀", officialUrl:"https://www.mykonos.gr/", metro:{en:"Mykonos Town (walk)",el:"Χώρα Μυκόνου (με τα πόδια)",it:"Città di Mykonos (a piedi)",de:"Mykonos-Stadt (zu Fuß)",ru:"Город Миконос (пешком)",ja:"ミコノスタウン（徒歩）"}, name:{en:"Mykonos Town",el:"Χώρα Μυκόνου",it:"Città di Mykonos",de:"Mykonos-Stadt",ru:"Город Миконос",ja:"ミコノスタウン"}, desc:{en:"Cosmopolitan island with windmills, Little Venice, vibrant nightlife.",el:"Κοσμοπολίτικο νησί με ανεμόμυλους, Μικρή Βενετία.",it:"Isola cosmopolita, mulini a vento, Piccola Venezia.",de:"Kosmopolitische Insel mit Windmühlen, Klein-Venedig.",ru:"Космополитичный остров с ветряными мельницами.",ja:"風車とリトルベネツィアで有名なリゾート。"}, tips:{en:"Walk coastal path to the windmills. Sunset at Little Venice.",el:"Περπατήστε στους ανεμόμυλους. Ηλιοβασίλεμα στη Μικρή Βενετία.",it:"Percorso costiero per i mulini. Tramonto a Piccola Venezia.",de:"Küstenweg zu den Windmühlen. Sonnenuntergang in Klein-Venedig.",ru:"Прогулка к ветряным мельницам. Закат в Маленькой Венеции.",ja:"海岸沿いを風車へ。リトルベネツィアで夕日を。"}},
+      { id:"knossos", emoji:"🏺", officialUrl:"https://knossos-palace.gr/", metro:{en:"Heraklion (bus)",el:"Ηράκλειο (λεωφορείο)",it:"Heraklion (autobus)",de:"Heraklion (Bus)",ru:"Ираклион (автобус)",ja:"イラクリオン（バス）"}, name:{en:"Palace of Knossos",el:"Ανάκτορο Κνωσού",it:"Palazzo di Cnosso",de:"Palast von Knossos",ru:"Кносский дворец",ja:"クノッソス宮殿"}, desc:{en:"Minoan civilization's grand palace, myth of Minotaur & Labyrinth.",el:"Μεγάλο ανάκτορο μινωικού πολιτισμού, μύθος Μινώταυρου.",it:"Grande palazzo della civiltà minoica, mito del Minotauro.",de:"Großer Palast der minoischen Zivilisation, Mythos Minotaurus.",ru:"Великий дворец минойской цивилизации, миф о Минотавре.",ja:"ミノア文明の宮殿。ミノタウロスの伝説。"}, tips:{en:"Combine with Heraklion Archaeological Museum. Arrive early.",el:"Συνδυάστε με το Αρχαιολογικό Μουσείο Ηρακλείου.",it:"Abbina il Museo Archeologico di Heraklion.",de:"Kombinieren Sie mit Archäologischem Museum Heraklion.",ru:"Совместите с Археологическим музеем Ираклиона.",ja:"イラクリオン考古学博物館とセットで。"}},
+      { id:"meteora", emoji:"⛰️", officialUrl:"https://meteora.com/", metro:{en:"Kalambaka (train from Athens)",el:"Καλαμπάκα (τρένο)",it:"Kalambaka (treno)",de:"Kalambaka (Zug)",ru:"Каламбака (поезд)",ja:"カランバカ（電車）"}, name:{en:"Meteora Monasteries",el:"Μετέωρα",it:"Meteora",de:"Meteora-Klöster",ru:"Монастыри Метеоры",ja:"メテオラ修道院"}, desc:{en:"Monasteries perched atop sandstone pillars, Unesco world heritage.",el:"Μοναστήρια σε ψηλούς βράχους, Μνημείο UNESCO.",it:"Monasteri su pilastri di arenaria, Patrimonio UNESCO.",de:"Klöster auf Sandsteinsäulen, UNESCO-Welterbe.",ru:"Монастыри на песчаных столбах, наследие ЮНЕСКО.",ja:"巨大な岩の上に建つ修道院群。ユネスコ世界遺産。"}, tips:{en:"Visit Great Meteoron & Varlaam. Sunset viewpoint.",el:"Επισκεφθείτε Μεγάλο Μετέωρο & Βαρλαάμ. Ηλιοβασίλεμα.",it:"Visita il Grande Meteora e Varlaam. Vista tramonto.",de:"Besuchen Sie Großes Meteora & Varlaam. Sonnenuntergang.",ru:"Посетите Великий Метеор и Варлаам. Закат.",ja:"大メテオロン修道院とヴァルラーム修道院を。"}},
+      { id:"delphi", emoji:"🐍", officialUrl:"https://delphi.culture.gr/", metro:{en:"Delphi (KTEL bus from Athens)",el:"Δελφοί (Λεωφορείο ΚΤΕΛ)",it:"Delfi (autobus KTEL)",de:"Delphi (KTEL-Bus)",ru:"Дельфы (автобус KTEL)",ja:"デルフィ（KTELバス）"}, name:{en:"Delphi Archaeological Site",el:"Αρχαιολογικός Χώρος Δελφών",it:"Sito Archeologico di Delfi",de:"Archäologische Stätte Delphi",ru:"Археологический памятник Дельфы",ja:"デルフィ遺跡"}, desc:{en:"Ancient sanctuary of Apollo, 'navel of the world', oracle.",el:"Ιερό του Απόλλωνα, 'ομφαλός της γης'.",it:"Santuario di Apollo, 'ombelico del mondo'.",de:"Antikes Apollo-Heiligtum, 'Nabel der Welt'.",ru:"Святилище Аполлона, 'пуп земли'.",ja:"アポロンの聖地。世界のへそ。"}, tips:{en:"Visit museum first. Walk up to stadium.",el:"Επισκεφθείτε πρώτα το μουσείο. Ανέβητε στο στάδιο.",it:"Visita prima il museo. Salire allo stadio.",de:"Zuerst Museum besuchen. Hinauf zum Stadion.",ru:"Сначала посетите музей. Поднимитесь к стадиону.",ja:"先に博物館を見学。スタジアムまで歩いて。"}},
+      { id:"olympia", emoji:"🏅", officialUrl:"https://olympia.culture.gr/", metro:{en:"Ancient Olympia (bus from Pyrgos)",el:"Αρχαία Ολυμπία (λεωφορείο)",it:"Olimpia Antica (bus)",de:"Alt-Olympia (Bus)",ru:"Древняя Олимпия (автобус)",ja:"オリンピア遺跡（バス）"}, name:{en:"Ancient Olympia",el:"Αρχαία Ολυμπία",it:"Olimpia Antica",de:"Alt-Olympia",ru:"Древняя Олимпия",ja:"オリンピア遺跡"}, desc:{en:"Birthplace of Olympic Games, Temple of Zeus, stadium.",el:"Γενέτειρα Ολυμπιακών Αγώνων, Ναός Δία.",it:"Culla dei Giochi Olimpici, Tempio di Zeus.",de:"Geburtsort der Olympischen Spiele, Zeus-Tempel.",ru:"Родина Олимпийских игр, храм Зевса.",ja:"オリンピック発祥の地。ゼウス神殿。"}, tips:{en:"Run on ancient track. Archaeological museum amazing.",el:"Τρέξτε στο αρχαίο στάδιο. Αρχαιολογικό μουσείο.",it:"Corri sull'antica pista. Museo archeologico.",de:"Auf der antiken Bahn laufen. Archäologisches Museum.",ru:"Пробегитесь по древней дорожке.",ja:"古代のトラックを走る。考古学博物館必見。"}},
+      { id:"epidaurus", emoji:"🎭", officialUrl:"https://epidavros.culture.gr/", metro:{en:"Ligourio (bus from Nafplio)",el:"Λιγουριό (λεωφορείο)",it:"Ligourio (bus da Nauplia)",de:"Ligourio (Bus von Nafplio)",ru:"Лигурио (автобус из Нафплиона)",ja:"リグリオ（ナフプリオからバス）"}, name:{en:"Theatre of Epidaurus",el:"Θέατρο Επιδαύρου",it:"Teatro di Epidauro",de:"Theater von Epidauros",ru:"Театр Эпидавра",ja:"エピダウロス劇場"}, desc:{en:"Best preserved ancient theatre, perfect acoustics.",el:"Καλύτερα διατηρημένο αρχαίο θέατρο, τέλεια ακουστική.",it:"Teatro antico meglio conservato, acustica perfetta.",de:"Best erhaltenes antikes Theater, perfekte Akustik.",ru:"Лучше всего сохранившийся древний театр.",ja:"古代劇場。音響効果が絶品。"}, tips:{en:"Sit at top row to test acoustics. Summer festival.",el:"Καθίστε στην πάνω σειρά. Θερινό φεστιβάλ.",it:"Siediti in alto per provare acustica. Festival estivo.",de:"Setzen Sie sich in die oberste Reihe. Sommerfestival.",ru:"Сядьте на верхний ряд. Летний фестиваль.",ja:"一番上の列で音響テスト。夏の音楽祭。"}},
+      { id:"rhodes", emoji:"🏰", officialUrl:"https://www.rhodes.gr/", metro:{en:"Rhodes Old Town (walk)",el:"Παλιά Πόλη Ρόδου (με τα πόδια)",it:"Città Vecchia di Rodi (a piedi)",de:"Altstadt von Rhodos (zu Fuß)",ru:"Старый город Родос (пешком)",ja:"ロドス旧市街（徒歩）"}, name:{en:"Medieval City of Rhodes",el:"Μεσαιωνική Πόλη Ρόδου",it:"Città Medievale di Rodi",de:"Mittelalterliche Stadt Rhodos",ru:"Средневековый город Родос",ja:"ロドスの中世都市"}, desc:{en:"Fortified city of Knights of St. John, Palace of Grand Master.",el:"Οχυρωμένη πόλη Ιωαννιτών Ιπποτών, Παλάτι Μεγάλου Μαγίστρου.",it:"Città fortificata dei Cavalieri, Palazzo del Gran Maestro.",de:"Befestigte Stadt der Johanniter, Großmeisterpalast.",ru:"Укрепленный город рыцарей, дворец Великого магистра.",ja:"聖ヨハネ騎士団の要塞都市。大首長宮殿。"}, tips:{en:"Walk the Street of Knights. Visit Archaeological Museum.",el:"Περπατήστε την Οδό Ιπποτών. Αρχαιολογικό μουσείο.",it:"Cammina per la Strada dei Cavalieri. Museo Archeologico.",de:"Ritterstraße entlang. Archäologisches Museum.",ru:"Пройтись по улице Рыцарей. Археологический музей.",ja:"騎士通りを散歩。考古学博物館へ。"}},
+      { id:"corfu", emoji:"🏯", officialUrl:"https://www.corfu.gr/", metro:{en:"Corfu Town (walk from port)",el:"Κέρκυρα (με τα πόδια)",it:"Città di Corfù (a piedi)",de:"Korfu-Stadt (zu Fuß)",ru:"Город Керкира (пешком)",ja:"ケルキラ旧市街"}, name:{en:"Corfu Old Town",el:"Παλιά Πόλη Κέρκυρας",it:"Città Vecchia di Corfù",de:"Altstadt von Korfu",ru:"Старый город Керкира",ja:"ケルキラ旧市街"}, desc:{en:"Venetian, French and British influence, two fortresses.",el:"Βενετική, γαλλική, βρετανική επίδραση, δύο φρούρια.",it:"Influenza veneziana, francese e britannica, due fortezze.",de:"Venezianischer, französischer, britischer Einfluss.",ru:"Венецианское, французское, британское влияние.",ja:"ベネチア・フランス・イギリスの影響。二つの要塞。"}, tips:{en:"Climb Old Fortress for sunset. Taste kumquat liqueur.",el:"Ανεβείτε στο Παλαιό Φρούριο για ηλιοβασίλεμα. Δοκιμάστε κουμ κουάτ.",it:"Sali alla Fortezza Vecchia per tramonto. Assaggia liquore kumquat.",de:"Alte Festung für Sonnenuntergang besteigen. Kumquat-Likör probieren.",ru:"Поднимитесь в Старую крепость на закат. Попробуйте ликер кумкват.",ja:"夕日は旧要塞へ。クムクアットリキュールを。"}},
+      { id:"zakynthos", emoji:"🚤", officialUrl:"https://www.zakynthos.gr/", metro:{en:"Zakynthos Town (boat to Navagio)",el:"Ζάκυνθος (βάρκα για Ναυάγιο)",it:"Zakynthos (barca per Navagio)",de:"Zakynthos (Boot nach Navagio)",ru:"Закинтос (лодка до Навагио)",ja:"ザキントス（沈没船へボート）"}, name:{en:"Navagio (Shipwreck) Beach",el:"Ναυάγιο",it:"Spiaggia del Relitto",de:"Navagio (Wrackbucht)",ru:"Пляж Навагио (Кораблекрушение)",ja:"ナバジオ（沈没船）ビーチ"}, desc:{en:"Famous cove with rusty shipwreck on white sand, turquoise water.",el:"Γνωστή όρμος με ναυάγιο, λευκή άμμος, γαλαζοπράσινα νερά.",it:"Baia famosa con relitto, sabbia bianca, acqua turchese.",de:"Berühmte Bucht mit Wrack, weißem Sand, türkisfarbenem Wasser.",ru:"Бухта с кораблекрушением, белый песок, бирюзовая вода.",ja:"白い砂浜と錆びた難破船。トルコ石の海。"}, tips:{en:"View from above at viewing platform. Boat tour only.",el:"Θέα από πάνω. Μόνο με βάρκα.",it:"Vista dall'alto. Solo barca.",de:"Blick von oben. Nur mit dem Boot.",ru:"Вид сверху. Только на лодке.",ja:"展望台からの眺め。ボートツアーのみ。"}},
+      { id:"thessaloniki", emoji:"🏛️", officialUrl:"https://www.thessaloniki.gr/", metro:{en:"White Tower (bus/sea front)",el:"Λευκός Πύργος (λεωφορείο)",it:"Torre Bianca (autobus)",de:"Weißer Turm (Bus)",ru:"Белая башня (автобус)",ja:"白い塔（バス）"}, name:{en:"White Tower of Thessaloniki",el:"Λευκός Πύργος Θεσσαλονίκης",it:"Torre Bianca di Salonicco",de:"Weißer Turm von Thessaloniki",ru:"Белая башня Салоников",ja:"テッサロニキの白い塔"}, desc:{en:"Landmark of Thessaloniki, former fortress, museum, panoramic view.",el:"Σύμβολο Θεσσαλονίκης, μουσείο, πανοραμική θέα.",it:"Simbolo di Salonicco, museo, vista panoramica.",de:"Wahrzeichen Thessalonikis, Museum, Panoramablick.",ru:"Символ Салоников, музей, панорамный вид.",ja:"テッサロニキの象徴。博物館と展望台。"}, tips:{en:"Climb to the top for city view. Visit Rotunda nearby.",el:"Ανεβείτε στην κορυφή. Κοντινή Ροτόντα.",it:"Salire in cima. Visita Rotonda.",de:"Erklimmen Sie die Spitze. Besuchen Sie Rotunde.",ru:"Поднимитесь наверх. Ротонда рядом.",ja:"頂上へ。近くのロトンダも。"}},
+      { id:"nafplio", emoji:"🏯", officialUrl:"https://www.nafplio.gr/", metro:{en:"Nafplio (bus from Athens)",el:"Ναύπλιο (λεωφορείο)",it:"Nauplia (bus da Atene)",de:"Nafplio (Bus von Athen)",ru:"Нафплион (автобус из Афин)",ja:"ナフプリオ（アテネからバス）"}, name:{en:"Palamidi Fortress",el:"Παλαμήδι",it:"Fortezza di Palamidi",de:"Festung Palamidi",ru:"Крепость Паламиди",ja:"パラミディ要塞"}, desc:{en:"Venetian fortress with 999 steps, stunning view over Argolic Gulf.",el:"Ενετικό φρούριο με 999 σκαλοπάτια, θέα Αργολικού κόλπου.",it:"Fortezza veneziana con 999 scalini, vista golfo Argolico.",de:"Venezianische Festung mit 999 Stufen, Blick auf Argolischen Golf.",ru:"Венецианская крепость с 999 ступенями.",ja:"999段の階段を持つベネチア要塞。アルゴリス湾の絶景。"}, tips:{en:"Climb stairs or taxi up. Combine with Bourtzi castle.",el:"Ανεβείτε με ταξί ή σκάλες. Συνδυάστε με Μπούρτζι.",it:"Sali le scale o taxi. Abbinata a Bourtzi.",de:"Treppen oder Taxi. Kombiniere mit Burg Bourtzi.",ru:"Поднимитесь по лестнице или такси. Совместите с Бурдзи.",ja:"階段かタクシーで。沖のブルツィ島も。"}},
+      { id:"sounion", emoji:"🌊", officialUrl:"https://www.sounion.gr/", metro:{en:"Sounion (bus from Athens)",el:"Σούνιο (λεωφορείο)",it:"Sounio (bus da Atene)",de:"Sounion (Bus von Athen)",ru:"Сунион (автобус из Афин)",ja:"スニオ岬（アテネからバス）"}, name:{en:"Temple of Poseidon",el:"Ναός του Ποσειδώνα",it:"Tempio di Poseidone",de:"Tempel des Poseidon",ru:"Храм Посейдона",ja:"ポセイドン神殿"}, desc:{en:"Doric temple at Cape Sounion, legendary sunset over Aegean.",el:"Δωρικός ναός στο Σούνιο, θρυλικό ηλιοβασίλεμα.",it:"Tempio dorico a Capo Sounion, tramonto leggendario.",de:"Dorischer Tempel auf Kap Sounion, legendärer Sonnenuntergang.",ru:"Дорический храм на мысе Сунион, легендарный закат.",ja:"スニオ岬のドーリア式神殿。エーゲ海の夕日が絶景。"}, tips:{en:"Go for sunset. Combine with coastal drive from Athens.",el:"Πηγαίνετε για ηλιοβασίλεμα. Οδήγηση από Αθήνα.",it:"Vai al tramonto. Guida costiera da Atene.",de:"Sonnenuntergang. Küstenfahrt von Athen.",ru:"Приезжайте на закат. Поездка от Афин по побережью.",ja:"夕日狙い。アテネから海岸線ドライブ。"}},
+      { id:"delos", emoji:"🗿", officialUrl:"https://delos.culture.gr/", metro:{en:"Delos (boat from Mykonos)",el:"Δήλος (βάρκα από Μύκονο)",it:"Delo (barca da Mykonos)",de:"Delos (Boot von Mykonos)",ru:"Делос (лодка с Миконоса)",ja:"デロス島（ミコノスから船）"}, name:{en:"Delos Archaeological Site",el:"Αρχαιολογικός Χώρος Δήλου",it:"Sito Archeologico di Delo",de:"Archäologische Stätte Delos",ru:"Археологический памятник Делос",ja:"デロス遺跡"}, desc:{en:"Sacred island, birthplace of Apollo, vast ruins, Terrace of Lions.",el:"Ιερό νησί, γενέτειρα Απόλλωνα, τεράστια ερείπια.",it:"Isola sacra, nascita di Apollo, rovine, Terrazza dei Leoni.",de:"Heilige Insel, Geburtsort Apollons, Löwenterrassen.",ru:"Священный остров, место рождения Аполлона.",ja:"アポロン生誕の聖島。ライオンのテラス。"}, tips:{en:"Half-day trip. Wear sunhat, bring water.",el:"Ημερήσια εκδρομή. Καπέλο, νερό.",it:"Gita di mezza giornata. Cappello, acqua.",de:"Halbtagesausflug. Sonnenhut, Wasser.",ru:"Экскурсия на полдня. Шляпа, вода.",ja:"半日ツアー。帽子と水必須。"}},
+      { id:"corinth", emoji:"🏺", officialUrl:"https://corinth.culture.gr/", metro:{en:"Ancient Corinth (bus from Athens)",el:"Αρχαία Κόρινθος (λεωφορείο)",it:"Corinto Antica (bus)",de:"Alt-Korinth (Bus)",ru:"Древний Коринф (автобус)",ja:"古代コリントス（バス）"}, name:{en:"Ancient Corinth",el:"Αρχαία Κόρινθος",it:"Corinto Antica",de:"Alt-Korinth",ru:"Древний Коринф",ja:"古代コリントス"}, desc:{en:"Rich commercial city, Temple of Apollo, Acrocorinth fortress.",el:"Πλούσια εμπορική πόλη, Ναός Απόλλωνα, Ακροκόρινθος.",it:"Ricca città commerciale, Tempio di Apollo, Acrocorinto.",de:"Reiche Handelsstadt, Apollontempel, Akrokorinth.",ru:"Богатый торговый город, храм Аполлона.",ja:"裕福な商業都市。アポロン神殿とアクロコリントス。"}, tips:{en:"Climb Acrocorinth for amazing views. Visit museum.",el:"Ανεβείτε Ακροκόρινθο. Επισκεφθείτε μουσείο.",it:"Sali su Acrocorinto. Visita il museo.",de:"Akrokorinth besteigen. Museum besuchen.",ru:"Поднимитесь на Акрокоринф. Посетите музей.",ja:"アクロコリントスへ登る。博物館も。"}}
+    ];
+
+    let customImages = JSON.parse(localStorage.getItem('greece_custom_images')) || {};
+    function getImageForSpot(id) { return customImages[id] || null; }
+    function updateUI() {
+      const tr = t[currentLang];
+      document.getElementById('app-title').innerText = tr.title;
+      document.getElementById('settings-btn-text').innerText = tr.settingsBtn;
+      document.getElementById('theme-toggle-text').innerText = tr.themeBtn;
+      document.getElementById('save-settings-text').innerText = tr.saveSettings;
+      document.getElementById('close-settings-text').innerText = tr.back;
+      document.getElementById('settings-title').innerText = tr.settingsTitle;
+      document.getElementById('settings-desc').innerText = tr.settingsDesc;
+      document.getElementById('footer-text').innerHTML = `${tr.footerText}<br><a href="mailto:mementomorikatsu@gmail.com">mementomorikatsu@gmail.com</a>`;
+      renderHome();
+      const curId = document.getElementById('detail-view').getAttribute('data-spot-id');
+      if (!document.getElementById('home-view').classList.contains('hidden') && curId) showDetailView(curId);
+    }
+    function renderHome() {
+      const container = document.getElementById('spot-slider');
+      container.innerHTML = '';
+      spotsData.forEach(spot => {
+        const card = document.createElement('div'); card.className = 'spot-card';
+        const name = spot.name[currentLang] || spot.name.en;
+        const desc = (spot.desc[currentLang] || spot.desc.en).substring(0, 80);
+        const imgUrl = getImageForSpot(spot.id);
+        const imgHtml = imgUrl ? `<img class="spot-img" src="${imgUrl}" alt="${name}" loading="lazy">` : `<div class="spot-emoji">${spot.emoji}</div>`;
+        card.innerHTML = `${imgHtml}<div class="spot-name">${name}</div><div class="spot-desc">${desc}...</div>`;
+        card.onclick = () => showDetailView(spot.id);
+        container.appendChild(card);
+      });
+    }
+    function showDetailView(id) {
+      const spot = spotsData.find(s => s.id === id);
+      if (!spot) return;
+      const tr = t[currentLang];
+      const name = spot.name[currentLang] || spot.name.en;
+      const desc = spot.desc[currentLang] || spot.desc.en;
+      const tips = spot.tips[currentLang] || spot.tips.en;
+      const metro = spot.metro[currentLang] || spot.metro.en;
+      const imgUrl = getImageForSpot(spot.id);
+      const imgHtml = imgUrl ? `<img class="detail-img" src="${imgUrl}" alt="${name}">` : `<div style="font-size:5rem">${spot.emoji}</div>`;
+      const html = `
+        <div class="detail-header">${imgHtml}<div class="detail-title">${name}</div></div>
+        <div class="detail-description">${desc}</div>
+        <div class="tips-card"><strong>${tr.tipsLabel}</strong><br>${tips}</div>
+        <div class="metro-info">${tr.metroLabel}: ${metro}</div><br>
+        <a href="${spot.officialUrl}" target="_blank" class="official-link">${tr.officialLabel}</a>
+        <div class="back-buttons"><button class="back-btn" id="back-to-home">🏠 ${tr.home}</button><button class="back-btn" id="back-previous">◀ ${tr.back}</button></div>
+      `;
+      const detailDiv = document.getElementById('detail-view');
+      detailDiv.innerHTML = html; detailDiv.setAttribute('data-spot-id', id);
+      document.getElementById('home-view').classList.add('hidden');
+      document.getElementById('settings-view').classList.add('hidden');
+      detailDiv.classList.remove('hidden');
+      document.getElementById('back-to-home')?.addEventListener('click', () => showHomeView());
+      document.getElementById('back-previous')?.addEventListener('click', () => window.history.back());
+      window.history.pushState({ view: 'detail', id }, '', `#${id}`);
+    }
+    function showHomeView() {
+      document.getElementById('detail-view').classList.add('hidden');
+      document.getElementById('settings-view').classList.add('hidden');
+      document.getElementById('home-view').classList.remove('hidden');
+      window.history.pushState({ view: 'home' }, '', '#home');
+      renderHome();
+    }
+    function openSettings() {
+      const grid = document.getElementById('settings-grid');
+      grid.innerHTML = '';
+      spotsData.forEach(spot => {
+        const div = document.createElement('div'); div.className = 'settings-item';
+        div.innerHTML = `<label>${spot.emoji} ${spot.name.en}</label><input type="text" id="img_${spot.id}" placeholder="https://..." value="${customImages[spot.id] || ''}">`;
+        grid.appendChild(div);
+      });
+      document.getElementById('home-view').classList.add('hidden');
+      document.getElementById('detail-view').classList.add('hidden');
+      document.getElementById('settings-view').classList.remove('hidden');
+    }
+    function saveSettings() {
+      spotsData.forEach(spot => {
+        const input = document.getElementById(`img_${spot.id}`);
+        if (input && input.value.trim()) customImages[spot.id] = input.value.trim();
+        else delete customImages[spot.id];
+      });
+      localStorage.setItem('greece_custom_images', JSON.stringify(customImages));
+      renderHome();
+      const curId = document.getElementById('detail-view').getAttribute('data-spot-id');
+      if (curId && !document.getElementById('detail-view').classList.contains('hidden')) showDetailView(curId);
+      alert(t[currentLang].saveSettings);
+      showHomeView();
+    }
+    function initLangButtons() {
+      const container = document.getElementById('lang-buttons');
+      container.innerHTML = '';
+      for (let [code, label] of Object.entries(languages)) {
+        const btn = document.createElement('button'); btn.className = 'lang-btn';
+        btn.innerHTML = label;
+        btn.onclick = () => { currentLang = code; updateUI(); };
+        container.appendChild(btn);
+      }
+    }
+    function initTheme() {
+      const stored = localStorage.getItem('theme');
+      if (stored === 'light') { document.body.classList.remove('dark'); document.body.classList.add('light'); }
+      else { document.body.classList.add('dark'); document.body.classList.remove('light'); }
+      document.getElementById('theme-toggle').onclick = () => {
+        const isDark = document.body.classList.contains('dark');
+        if (isDark) { document.body.classList.replace('dark', 'light'); localStorage.setItem('theme', 'light'); }
+        else { document.body.classList.replace('light', 'dark'); localStorage.setItem('theme', 'dark'); }
+      };
+    }
+    function route() {
+      const hash = window.location.hash.slice(1);
+      if (hash && hash !== 'home' && spotsData.some(s => s.id === hash)) showDetailView(hash);
+      else showHomeView();
+    }
+    window.addEventListener('popstate', () => {
+      if (!document.getElementById('home-view').classList.contains('hidden')) {
+        const id = window.location.hash.slice(1);
+        if (id && spotsData.some(s=>s.id===id)) showDetailView(id);
+        else showHomeView();
+      } else { if (window.location.hash === '#home') showHomeView(); else route(); }
+    });
+    if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(e=>console.log('SW error', e)));
+    initLangButtons(); initTheme(); renderHome(); route();
+    document.getElementById('settings-btn')?.addEventListener('click', openSettings);
+    document.getElementById('save-settings')?.addEventListener('click', saveSettings);
+    document.getElementById('close-settings')?.addEventListener('click', showHomeView);
+  </script>
+</body>
+</html>
