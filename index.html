@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Greek Sights 16 - ギリシャ観光名所16選</title>
-  <meta name="description" content="16 must-see Greek sights: Acropolis, Santorini, Meteora, Pella (Alexander's capital) and more. 6 languages, custom images, travel tips.">
+  <title>Greek Sights 16 - ギリシャ観光名所16選（並べ替え機能付き）</title>
+  <meta name="description" content="16 must-see Greek sights: Acropolis, Santorini, Meteora, Pella and more. 6 languages, custom images, drag & drop sorting.">
   <meta name="theme-color" content="#0B3B4F">
-  <link rel="apple-touch-icon" href="icons/icon-192.jpg">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- SortableJS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
     body.light { --bg: #F4F9FC; --surface: #FFFFFF; --text: #1A3E4C; --text-secondary: #4B6A7A; --border: #CFE3EA; --accent: #1C6E8F; --accent-light: #E1F0F5; --gold: #F4B942; --card-shadow: 0 12px 28px rgba(0,0,0,0.06); --header-bg: #F4F9FCcc; --footer-bg: #F4F9FCcc; --btn-bg: #E6F0F4; --btn-hover: #D1E4EC; }
@@ -24,14 +26,65 @@
     button, .lang-btn, .settings-trigger { background-color: var(--btn-bg); border: 1px solid var(--border); padding: 0.45rem 1rem; border-radius: 60px; font-size: 0.85rem; font-weight: 500; cursor: pointer; color: var(--text); transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.4rem; backdrop-filter: blur(4px); }
     button:hover, .lang-btn:hover, .settings-trigger:hover { background-color: var(--btn-hover); transform: translateY(-2px); border-color: var(--gold); }
     .main-container { max-width: 1400px; margin: 2rem auto; padding: 0 1.5rem; }
-    .spot-slider { display: grid; grid-template-rows: repeat(4, auto); grid-auto-flow: column; grid-auto-columns: minmax(280px, 310px); gap: 1.8rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1.5rem; scrollbar-width: thin; }
+    .spot-slider { 
+      display: grid; 
+      grid-template-rows: repeat(4, auto); 
+      grid-auto-flow: column; 
+      grid-auto-columns: minmax(280px, 310px); 
+      gap: 1.8rem; 
+      overflow-x: auto; 
+      scroll-snap-type: x mandatory; 
+      padding-bottom: 1.5rem; 
+      scrollbar-width: thin;
+      overflow-y: visible;
+    }
     .spot-slider::-webkit-scrollbar { height: 5px; }
-    .spot-card { scroll-snap-align: start; background: var(--surface); border-radius: 32px; padding: 1.2rem; box-shadow: var(--card-shadow); cursor: pointer; transition: all 0.25s ease; border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .spot-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px rgba(0,0,0,0.2); border-color: var(--gold); }
+    .spot-card { 
+      scroll-snap-align: start; 
+      background: var(--surface); 
+      border-radius: 32px; 
+      padding: 1rem 1rem 1.2rem 1rem; 
+      box-shadow: var(--card-shadow); 
+      cursor: pointer; 
+      transition: all 0.25s ease; 
+      border: 1px solid var(--border); 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      text-align: center; 
+      position: relative;
+    }
+    /* ドラッグハンドル */
+    .drag-handle {
+      cursor: grab;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--gold);
+      background: var(--btn-bg);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.3rem;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .drag-handle:active { cursor: grabbing; }
+    .drag-handle:hover { background: var(--btn-hover); }
+    /* カードコンテンツ */
+    .card-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .spot-img { width: 100%; height: 160px; object-fit: cover; border-radius: 24px; margin-bottom: 1rem; background-color: var(--btn-bg); }
     .spot-emoji { font-size: 3.5rem; margin: 0.2rem 0; }
     .spot-name { font-size: 1.3rem; font-weight: 700; margin: 0.6rem 0 0.3rem; }
     .spot-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; line-height: 1.4; }
+    .sortable-drag { opacity: 0.4; cursor: grabbing; }
     .detail-view { max-width: 1100px; margin: 1rem auto; background: var(--surface); border-radius: 40px; padding: 2rem; border: 1px solid var(--border); box-shadow: var(--card-shadow); }
     .detail-header { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; border-bottom: 2px dashed var(--border); padding-bottom: 1.5rem; }
     .detail-img { width: 280px; height: 280px; object-fit: cover; border-radius: 32px; background: var(--btn-bg); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
@@ -39,7 +92,6 @@
     .detail-title { font-size: 2.2rem; font-weight: 700; }
     .detail-description { margin: 1rem 0; line-height: 1.7; font-size: 1rem; }
     .tips-card { background: var(--accent-light); padding: 1.2rem; border-radius: 28px; margin: 1rem 0; border-left: 4px solid var(--gold); }
-    .tips-card strong { color: var(--gold); }
     .metro-info { display: inline-flex; align-items: center; gap: 8px; background: var(--btn-bg); padding: 0.5rem 1rem; border-radius: 60px; font-size: 0.9rem; margin: 0.5rem 0; }
     .official-link { display: inline-flex; align-items: center; gap: 6px; background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 60px; text-decoration: none; font-weight: 500; margin: 1rem 0; }
     .official-link:hover { opacity: 0.9; transform: scale(0.98); }
@@ -95,7 +147,7 @@
       ru: { title:'🇬🇷 Жемчужины Эгеиды · 16 греческих чудес', settingsBtn:'Настройки изображений', themeBtn:'Тёмная/Светлая', saveSettings:'Сохранить и обновить', back:'Назад', home:'Главная', tipsLabel:'💡 Советы путешественникам', metroLabel:'🚇 Транспорт / Доступ', officialLabel:'🔗 Офиц. сайт', settingsTitle:'🖼️ Установить изображения', settingsDesc:'Введите URL изображений. Пусто для эмодзи.', footerText:'📮 Эгейский консьерж' },
       ja: { title:'🇬🇷 エーゲ海の宝石 · ギリシャ観光名所16選', settingsBtn:'画像設定', themeBtn:'ダーク/ライト', saveSettings:'保存して更新', back:'戻る', home:'ホーム', tipsLabel:'💡 旅行のヒント', metroLabel:'🚇 アクセス / 交通', officialLabel:'🔗 公式サイト', settingsTitle:'🖼️ 画像URLを設定', settingsDesc:'各スポットの画像URL。空欄は絵文字。', footerText:'📮 エーゲ海トラベルコンシェルジュ' }
     };
-    // 16 Greek sights (Pella replaces Thessaloniki)
+    // 16 Greek sights (with Pella instead of Thessaloniki)
     const spotsData = [
       { id:"acropolis", emoji:"🏛️", officialUrl:"https://www.theacropolismuseum.gr/en", metro:{en:"Acropoli (Metro Line 2)",el:"Ακρόπολη (Μετρό Γραμμή 2)",it:"Acropoli (Metro Linea 2)",de:"Akropoli (U-Bahn Linie 2)",ru:"Акрополи (метро линия 2)",ja:"アクロポリ駅（メトロ2号线）"}, name:{en:"Acropolis & Parthenon",el:"Ακρόπολη & Παρθενώνας",it:"Acropoli & Partenone",de:"Akropolis & Parthenon",ru:"Акрополь и Парфенон",ja:"アクロポリス／パルテノン神殿"}, desc:{en:"The Acropolis is the ultimate symbol of ancient Greek civilization. The Parthenon, a Doric temple dedicated to Athena Parthenos, stands proudly on the rocky hill. From here you get a breathtaking 360° view of modern Athens and the Aegean coastline. The surrounding ancient theaters and sanctuaries make this a must-visit archaeological wonder.",el:"Η Ακρόπολη είναι το απόλυτο σύμβολο του αρχαίου ελληνικού πολιτισμού. Ο Παρθενώνας, ναός αφιερωμένος στην Αθηνά Παρθένο, δεσπόζει στον βράχο.",it:"L'Acropoli è il simbolo supremo dell'antica civiltà greca. Il Partenone domina la collina rocciosa.",de:"Die Akropolis ist das ultimative Symbol der antiken griechischen Zivilisation. Der Parthenon thront auf dem felsigen Hügel.",ru:"Акрополь — главный символ древнегреческой цивилизации. Парфенон возвышается на скалистом холме.",ja:"アクロポリスは古代ギリシャ文明の象徴。アテナを祀るパルテノン神殿がそびえる。"}, tips:{en:"Buy the combined ticket (€30) for Acropolis plus 6 other sites. Arrive at 8 AM to avoid heat & crowds. Wear sturdy shoes.",el:"Αγοράστε το συνδυαστικό εισιτήριο (€30). Φτάστε στις 8 π.μ. Παπούτσια με αντιολισθητική σόλα.",it:"Acquista il biglietto combinato (€30). Arriva alle 8:00. Scarpe comode.",de:"Kombi-Ticket (€30) kaufen. Um 8 Uhr kommen. Feste Schuhe.",ru:"Купите комбинированный билет (€30). Приходите к 8 утра. Удобная обувь.",ja:"共通券（30€）がお得。朝8時到着。歩きやすい靴で。"}},
       { id:"santorini", emoji:"🌅", officialUrl:"https://www.santorini.gr/", metro:{en:"Thira (bus from port/airport)",el:"Θήρα (λεωφορείο από λιμάνι/αεροδρόμιο)",it:"Thira (bus da porto/aeroporto)",de:"Thira (Bus vom Hafen/Flughafen)",ru:"Тира (автобус из порта/аэропорта)",ja:"ティラ（港・空港からバス）"}, name:{en:"Santorini (Oia & Fira)",el:"Σαντορίνη (Οία & Φηρά)",it:"Santorini (Oia e Fira)",de:"Santorini (Oia & Fira)",ru:"Санторини (Ойя и Фира)",ja:"サントリーニ島（イア＆フィラ）"}, desc:{en:"Santorini is the postcard of Greece: whitewashed Cycladic houses with blue domes, perched on the caldera cliff. The volcanic landscape, red and black beaches, and the famous sunset in Oia create an unforgettable romance. Explore the ancient city of Akrotiri, a Minoan Bronze Age settlement preserved in volcanic ash.",el:"Η Σαντορίνη είναι η καρτ ποστάλ της Ελλάδας: άσπρα κυκλαδίτικα σπίτια με μπλε τρούλους πάνω στην καλντέρα. Ηφαιστειακό τοπίο, κόκκινες και μαύρες παραλίες, και το περίφημο ηλιοβασίλεμα στην Οία.",it:"Santorini è la cartolina della Grecia: case bianche, cupole blu sulla caldera. Tramonto magico.",de:"Santorini ist die Postkarte Griechenlands: weiße Häuser, blaue Kuppeln auf der Caldera. Magischer Sonnenuntergang.",ru:"Санторини — открытка Греции: белые дома, синие купола на кальдере. Волшебный закат.",ja:"サントリーニはまさにギリシャのポストカード。白い壁と青いドーム、カルデラの絶景。"}, tips:{en:"Book accommodation with caldera view months in advance. Hike from Fira to Oia (3 hours) before sunset. Rent an ATV to explore beaches.",el:"Κλείστε διαμονή με θέα καλντέρα μήνες πριν. Πεζοπορία Φηρά-Οία πριν το ηλιοβασίλεμα.",it:"Prenota con vista caldera con largo anticipo. Escursione Fira-Oia. Noleggia un quad.",de:"Unterkunft mit Caldera-Blick früh buchen. Wanderung Fira-Oia. Quad mieten.",ru:"Бронируйте вид на кальдеру за месяцы. Поход из Фиры в Ойю. Арендуйте квадроцикл.",ja:"カルデラビューの宿は早めに。フィラ→イアのハイキング。ATVレンタルでビーチ巡り。"}},
@@ -116,7 +168,106 @@
     ];
 
     let customImages = JSON.parse(localStorage.getItem('greece_custom_images')) || {};
+    const SORT_ORDER_KEY = 'greece_sort_order';
+    let currentSortOrder = null;
+    let sortableInstance = null;
+
     function getImageForSpot(id) { return customImages[id] || null; }
+
+    function loadSortOrder() {
+      const stored = localStorage.getItem(SORT_ORDER_KEY);
+      if (stored) {
+        try {
+          currentSortOrder = JSON.parse(stored);
+          if (!Array.isArray(currentSortOrder)) currentSortOrder = null;
+        } catch(e) { currentSortOrder = null; }
+      } else {
+        currentSortOrder = null;
+      }
+    }
+
+    function saveSortOrder(orderArray) {
+      if (orderArray && orderArray.length === spotsData.length) {
+        localStorage.setItem(SORT_ORDER_KEY, JSON.stringify(orderArray));
+        currentSortOrder = orderArray;
+      }
+    }
+
+    function getSortedSpots() {
+      if (!currentSortOrder) return [...spotsData];
+      const sorted = [];
+      const map = new Map(spotsData.map(s => [s.id, s]));
+      for (const id of currentSortOrder) {
+        if (map.has(id)) {
+          sorted.push(map.get(id));
+          map.delete(id);
+        }
+      }
+      sorted.push(...map.values());
+      return sorted;
+    }
+
+    function renderHome() {
+      const container = document.getElementById('spot-slider');
+      container.innerHTML = '';
+      const sortedSpots = getSortedSpots();
+      sortedSpots.forEach(spot => {
+        const card = document.createElement('div'); 
+        card.className = 'spot-card';
+        card.setAttribute('data-id', spot.id);
+        
+        const handleDiv = document.createElement('div');
+        handleDiv.className = 'drag-handle';
+        handleDiv.innerHTML = '⋮⋮';
+        handleDiv.setAttribute('aria-label', 'Drag to reorder');
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'card-content';
+        
+        const name = spot.name[currentLang] || spot.name.en;
+        const desc = (spot.desc[currentLang] || spot.desc.en).substring(0, 90) + '…';
+        const imgUrl = getImageForSpot(spot.id);
+        const imgHtml = imgUrl ? `<img class="spot-img" src="${imgUrl}" alt="${name}" loading="lazy">` : `<div class="spot-emoji">${spot.emoji}</div>`;
+        contentDiv.innerHTML = `${imgHtml}<div class="spot-name">${name}</div><div class="spot-desc">${desc}</div>`;
+        
+        card.appendChild(handleDiv);
+        card.appendChild(contentDiv);
+        
+        card.addEventListener('click', (e) => {
+          if (handleDiv.contains(e.target)) return;
+          showDetailView(spot.id);
+        });
+        
+        container.appendChild(card);
+      });
+      initSortable();
+    }
+
+    function initSortable() {
+      const container = document.getElementById('spot-slider');
+      if (!container) return;
+      if (sortableInstance) {
+        sortableInstance.destroy();
+        sortableInstance = null;
+      }
+      sortableInstance = new Sortable(container, {
+        handle: '.drag-handle',
+        animation: 250,
+        ghostClass: 'sortable-drag',
+        onEnd: function() {
+          const newOrder = [];
+          const cards = container.querySelectorAll('.spot-card');
+          cards.forEach(card => {
+            const id = card.getAttribute('data-id');
+            if (id) newOrder.push(id);
+          });
+          if (newOrder.length === spotsData.length) {
+            saveSortOrder(newOrder);
+          }
+        }
+      });
+    }
+
     function updateUI() {
       const tr = t[currentLang];
       document.getElementById('app-title').innerText = tr.title;
@@ -131,20 +282,7 @@
       const curId = document.getElementById('detail-view').getAttribute('data-spot-id');
       if (!document.getElementById('home-view').classList.contains('hidden') && curId) showDetailView(curId);
     }
-    function renderHome() {
-      const container = document.getElementById('spot-slider');
-      container.innerHTML = '';
-      spotsData.forEach(spot => {
-        const card = document.createElement('div'); card.className = 'spot-card';
-        const name = spot.name[currentLang] || spot.name.en;
-        const desc = (spot.desc[currentLang] || spot.desc.en).substring(0, 90) + '…';
-        const imgUrl = getImageForSpot(spot.id);
-        const imgHtml = imgUrl ? `<img class="spot-img" src="${imgUrl}" alt="${name}" loading="lazy">` : `<div class="spot-emoji">${spot.emoji}</div>`;
-        card.innerHTML = `${imgHtml}<div class="spot-name">${name}</div><div class="spot-desc">${desc}</div>`;
-        card.onclick = () => showDetailView(spot.id);
-        container.appendChild(card);
-      });
-    }
+
     function showDetailView(id) {
       const spot = spotsData.find(s => s.id === id);
       if (!spot) return;
@@ -172,6 +310,7 @@
       document.getElementById('back-previous')?.addEventListener('click', () => window.history.back());
       window.history.pushState({ view: 'detail', id }, '', `#${id}`);
     }
+
     function showHomeView() {
       document.getElementById('detail-view').classList.add('hidden');
       document.getElementById('settings-view').classList.add('hidden');
@@ -179,6 +318,7 @@
       window.history.pushState({ view: 'home' }, '', '#home');
       renderHome();
     }
+
     function openSettings() {
       const grid = document.getElementById('settings-grid');
       grid.innerHTML = '';
@@ -191,6 +331,7 @@
       document.getElementById('detail-view').classList.add('hidden');
       document.getElementById('settings-view').classList.remove('hidden');
     }
+
     function saveSettings() {
       spotsData.forEach(spot => {
         const input = document.getElementById(`img_${spot.id}`);
@@ -204,6 +345,7 @@
       alert(t[currentLang].saveSettings);
       showHomeView();
     }
+
     function initLangButtons() {
       const container = document.getElementById('lang-buttons');
       container.innerHTML = '';
@@ -214,6 +356,7 @@
         container.appendChild(btn);
       }
     }
+
     function initTheme() {
       const stored = localStorage.getItem('theme');
       if (stored === 'light') { document.body.classList.remove('dark'); document.body.classList.add('light'); }
@@ -224,11 +367,13 @@
         else { document.body.classList.replace('light', 'dark'); localStorage.setItem('theme', 'dark'); }
       };
     }
+
     function route() {
       const hash = window.location.hash.slice(1);
       if (hash && hash !== 'home' && spotsData.some(s => s.id === hash)) showDetailView(hash);
       else showHomeView();
     }
+
     window.addEventListener('popstate', () => {
       if (!document.getElementById('home-view').classList.contains('hidden')) {
         const id = window.location.hash.slice(1);
@@ -236,8 +381,15 @@
         else showHomeView();
       } else { if (window.location.hash === '#home') showHomeView(); else route(); }
     });
+
     if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(e=>console.log('SW error', e)));
-    initLangButtons(); initTheme(); renderHome(); route();
+    
+    loadSortOrder();
+    initLangButtons(); 
+    initTheme(); 
+    renderHome(); 
+    route();
+    
     document.getElementById('settings-btn')?.addEventListener('click', openSettings);
     document.getElementById('save-settings')?.addEventListener('click', saveSettings);
     document.getElementById('close-settings')?.addEventListener('click', showHomeView);
